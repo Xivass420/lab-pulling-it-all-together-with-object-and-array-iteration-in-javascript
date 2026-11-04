@@ -212,3 +212,5 @@ console.log(shoeSize("Ben Gordon")); // Output: 15
 console.log(teamColors("Golden State Warriors")); // Output: ["Warrior Blue", "Golden Yellow"]
 console.log(teamNames()); // Output: ["Golden State Warriors", "Charlotte Hornets"]
 console.log(playerNumbers("Golden State Warriors")); // Output: [1, 2, 3, 4, 5]
+console.log(playerStats("Ben Gordon")); // Output: { number: 8, shoe: 15, points: 33, rebounds: 3, assists: 2, steals: 1, blocks: 1, slamDunks: 0 }
+console.log(bigShoeRebounds()); // Output: 12
