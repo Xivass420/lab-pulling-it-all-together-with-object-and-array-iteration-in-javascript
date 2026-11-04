@@ -114,3 +114,101 @@ function gameObject() {
         },
     };
 }
+
+
+const game = gameObject();
+
+//Function to find a player by name on either team
+function findPlayer(playerName) {
+    const teams = Object.values(game);
+    for (const team of teams) {
+        if (team.players[playerName]) {
+            return team.players[playerName];
+        }
+    }
+    return null;
+}
+
+//Points scored by a player
+function numPointsScored(playerName) {
+    const player = findPlayer(playerName);
+    let points = 0;
+    if (player) {
+        points = player.points;
+    }
+    return points;
+}
+
+//Player's shoe size
+function shoeSize(playerName) {
+    const player = findPlayer(playerName);
+    let size = 0;
+    if (player) {
+        size = player.shoe;
+    }
+    return size;
+}
+
+//Team colors
+function teamColors(teamName) {
+    const teams = Object.values(game);
+    for (const team of teams) {
+        if (team.teamName === teamName) {
+            return team.colors;
+        }
+    }
+    return null;
+}
+
+//Array of both teams' names
+function teamNames() {
+    const teams = Object.values(game);
+    const names = teams.map(team => team.teamName);
+    return names;
+}
+
+//Array of team jersey numbers
+function playerNumbers(teamName) {
+    const teams = Object.values(game);
+    const team = teams.find(team => team.teamName === teamName);
+
+    let numbers = [];
+    if (team) {
+        numbers = Object.values(team.players).map(player => player.number);
+    }
+    return numbers;
+}
+
+//stats for a player
+function playerStats(playerName) {
+    const player = findPlayer(playerName);
+    return player || null;
+}
+
+//Player with the largest shoe size and their rebounds
+function bigShoeRebounds() {
+    const teams = Object.values(game);
+    let players = [];
+    for (const team of teams) {
+        players = players.concat(Object.values(team.players));
+    }
+
+    const playerWithLargestShoe = players.reduce((largest, player) => {
+        let result = largest;
+        if (player.shoe > largest.shoe) {
+            result = player;
+        }
+        return result;
+    });
+
+    return playerWithLargestShoe.rebounds;
+}
+
+
+
+
+console.log(numPointsScored("Ben Gordon")); // Output: 33
+console.log(shoeSize("Ben Gordon")); // Output: 15
+console.log(teamColors("Golden State Warriors")); // Output: ["Warrior Blue", "Golden Yellow"]
+console.log(teamNames()); // Output: ["Golden State Warriors", "Charlotte Hornets"]
+console.log(playerNumbers("Golden State Warriors")); // Output: [1, 2, 3, 4, 5]
